@@ -4,7 +4,10 @@ import ui._
 
 import ui.UndefinedException
 import javax.management.Notification
-case class Identifier(value: String) extends Expression{
-def execute( env : Environment) = 
-  if (env.contains(this)) env(this) else throw new UndefinedException(value)
+case class Identifier(name: String) extends Expression with Serializable{
+def execute( env : Environment):Value = {
+  if (env.find(this)==values.Notification.UNKNOWN ) throw new UndefinedException("Undefined Identifier: "+name)
+  
+  else env.find(this)
+}
 }

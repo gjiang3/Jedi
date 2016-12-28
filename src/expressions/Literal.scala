@@ -1,5 +1,5 @@
 package expressions
 import values._
-trait Literal extends Expression with Value {
-  def execute( env : Environment):Value = this
+case class Literal() extends Expression with Value with Serializable{
+def execute( env : Environment):Value = this
 }

@@ -5,11 +5,13 @@ import values._
 
 class EwokParsers extends RegexParsers {
 
+  
+ 
 
   def declaration: Parser[Expression] = "def" ~ identifier ~ "=" ~ expression ^^
-  {
+    {
       case "def" ~ id ~ "=" ~ exp => Declaration(id, exp)
-  }
+    }
 
   def expression: Parser[Expression] = declaration | conditional | disjunction | failure("Invalid expression")
   
@@ -20,11 +22,11 @@ class EwokParsers extends RegexParsers {
   }
   
   def operands: Parser[List[Expression]] = "(" ~> opt(expression~rep("," ~> expression)) <~ ")" ^^
-  {
+      {
     case None => Nil
     case Some(e ~ Nil) => List(e)
     case Some(e ~ exp) => e::exp
-   }
+      }
 
   def funcall: Parser[Expression] = term ~ opt(operands) ^^
   {

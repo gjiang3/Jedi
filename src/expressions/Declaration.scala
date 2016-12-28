@@ -1,10 +1,8 @@
 package expressions
-import values._
 
-case class Declaration(id: Identifier, init: Expression) extends SpecialForm {
-   def execute(env: Environment): Value =  {
-     // add a new row to env
-     env.put(id, init.execute(env))
-     Notification.DONE
-   }
+import values._
+import ui._
+
+case class Declaration( a : Identifier,  e : Expression) extends SpecialForm {
+def execute( env : Environment):Value = { env.put(a, e.execute(env)); Notification.OK }
 }

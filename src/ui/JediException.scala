@@ -1,5 +1,5 @@
 package ui
 
-import scala.util.parsing.combinator._
+class JediException( msg : String) extends Exception(msg) {
 
-class JediException(val msg: String = "Your force is weak") extends Exception(msg)
+}

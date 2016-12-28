@@ -1,7 +1,5 @@
 package ui
 
-import scala.util.parsing.combinator._
+class TypeException(msg : String = "TypeExeption") extends JediException(msg){
 
-
-
-class TypeException(val tmsg: String = "Type error") extends JediException(tmsg)
+}

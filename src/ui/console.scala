@@ -2,7 +2,7 @@ package ui
 import expressions._
 import values._
 object console {
-   val parsers = new EwokParsers  // for now
+   val parsers = new SithParser // for now
    val globalEnv = new Environment()
 
    def execute(cmmd: String): String = {
@@ -39,11 +39,10 @@ object console {
                println("column # = " + e.result.next.pos.column)
                println("token = " + e.result.next.first)
             }
-           
+            case e: UndefinedException => {
+          println(e.msg)
+        }
             // handle other types of exceptions
-            case e: TypeException => println(e.msg)
-            case e: UndefinedException => println(e.msg)
-            case e: JediException => println(e.msg)
          } finally {
             Console.flush 
          }

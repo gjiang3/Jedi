@@ -1,14 +1,12 @@
 package expressions
-import values._
-import ui._
 
-case class Conditional(condition: Expression, consequent: Expression, alternative: Expression = null) extends SpecialForm {
-   def execute(env: Environment): Value = {
-     condition.execute(env) match {
-       case Boole(value) => 
-         if (value) consequent.execute(env) 
-         else if (alternative != null) alternative.execute(env) else Notification.UNSPECIFIED
-       case _ => throw new TypeException("if condition must be Boole")
-     }
-   }
+import values._
+
+case class Conditional(exp1: Expression, exp2: Expression, exp3: Expression = null) extends SpecialForm {
+  def execute(env: Environment): Value ={
+    if ( exp1.execute(env).toString()=="true") exp2.execute(env)
+    else if (exp1.execute(env).toString()=="false") exp3. execute(env)  
+    else Notification.UNKNOWN 
+  }
+    
 }
